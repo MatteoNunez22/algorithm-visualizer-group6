@@ -7,16 +7,18 @@ function StackAndQueue() {
 	const width = window.innerWidth;
 	var mainSvg = d3.select('body').append('svg').attr('id', 'main-svg').attr('width', width).attr('height', 600);
 	return (
-		<div>
-			<p>Stack and Queue</p>
+		<div className = 'center'>
+			<p >Stack and Queue</p>
 			<label>
 				User-Defined-List:
 				<input type="text" id="user-defined-list" />
 			</label>
 			<button onClick={CreateStackAnaQueue}>Create</button>
 			<br />
+			<br />
 			<button onClick={createArrayFromStack}>Create array by popping the stack elements</button>
 			<button onClick={createArrayFromQueue}>Create array by dequeuing the queue</button>
+			<br />
 			<br />
 			<div className="container">
 
@@ -37,7 +39,7 @@ function createArrayFromStack() {
 	console.log(stackArray);
 	const container = document.getElementById('stack')
 	container.innerHTML += `<h3 style="margin-right: 20px;">Stack Array</h3>`;
-	stackArray.forEach(element => container.innerHTML += `<h1 class="item">${element}</h1>`);
+	stackArray.forEach(element => container.innerHTML += `<h1 class="item">${element}</h1>`)
 }
 function createArrayFromQueue() {
 	const userInput = document.getElementById('user-defined-list').value;
