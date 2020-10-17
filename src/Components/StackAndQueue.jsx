@@ -23,25 +23,57 @@ function CreateStackAnaQueue() {
 	const userInput = document.getElementById('user-defined-list').value;
 	const userList = userInput.split(',').map(Number);
 	console.log(userList);
-	draw(userList);
+	drawStack(userList);
 }
 
-function draw(list) {
+function drawStack(list) {
 	var mainSvg = d3.select('#main-svg');
 	mainSvg.selectAll('*').remove();
-	var cy = 30;
-	var num;
-	for (num of list) {
+	let cy = 30;
+	for (let num of list) {
 		console.log(num);
-		addCircle(cy, num, mainSvg);
+		addCircle(40, cy, num, mainSvg);
+		cy += 70;
+	}
+	let cx = 300;
+	for (let num of list) {
+		console.log(num);
+		addCircle(cx, 40, num, mainSvg);
+		cx += 70;
+	}
+	var text = mainSvg
+		.append('text')
+		.attr('x', 25)
+		.attr('y', cy)
+		.text('Stack')
+		.attr('font-size', '20px')
+		.attr('fill', 'black');
+
+	var text = mainSvg
+		.append('text')
+		.attr('x', 300)
+		.attr('y', 100)
+		.text('Queue')
+		.attr('font-size', '20px')
+		.attr('fill', 'black');
+
+	cx = 300;
+	for (let i = 0; i < list.length - 1; i++) {
+		addHorizontalLine(cx, mainSvg);
+		cx += 70;
+	}
+
+	cy = 30;
+	for (let i = 0; i < list.length - 1; i++) {
+		addVerticalLine(cy, mainSvg);
 		cy += 70;
 	}
 }
 
-function addCircle(cy, num, mainSvg) {
+function addCircle(cx, cy, num, mainSvg) {
 	var innerCircle = mainSvg
 		.append('circle')
-		.attr('cx', 30)
+		.attr('cx', cx)
 		.attr('cy', cy)
 		.attr('r', 30)
 		.attr('width', 30)
@@ -49,7 +81,7 @@ function addCircle(cy, num, mainSvg) {
 		.attr('fill', '#333');
 	var outterCircle = mainSvg
 		.append('circle')
-		.attr('cx', 30)
+		.attr('cx', cx)
 		.attr('cy', cy)
 		.attr('r', 28)
 		.attr('width', 30)
@@ -57,11 +89,33 @@ function addCircle(cy, num, mainSvg) {
 		.attr('fill', '#FFF');
 	var text = mainSvg
 		.append('text')
-		.attr('x', 20)
+		.attr('x', cx - 5)
 		.attr('y', cy)
 		.text(num)
 		.attr('font-size', '20px')
-		.attr('fill', 'red');
+		.attr('fill', 'black');
+}
+
+function addVerticalLine(cy, mainSvg) {
+	var line = mainSvg
+		.append('line')
+		.attr('x1', 40)
+		.attr('y1', cy + 30)
+		.attr('x2', 40)
+		.attr('y2', cy + 40)
+		.attr('stroke-width', 3)
+		.attr('stroke', 'black');
+}
+
+function addHorizontalLine(cx, mainSvg) {
+	var line = mainSvg
+		.append('line')
+		.attr('x1', cx + 30)
+		.attr('y1', 30)
+		.attr('x2', cx + 40)
+		.attr('y2', 30)
+		.attr('stroke-width', 3)
+		.attr('stroke', 'black');
 }
 
 export default StackAndQueue;
