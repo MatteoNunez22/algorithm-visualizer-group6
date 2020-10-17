@@ -1,11 +1,9 @@
 import React from 'react';
-import Application from "./Components/Application";
+import Application from './Components/Application';
 import './App.css';
 
 function App() {
-  return (
-    <Application />
-  );
+	return <Application />;
 }
 
 export default App;
