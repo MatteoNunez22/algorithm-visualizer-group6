@@ -26,10 +26,15 @@
 }
 
 #container {
+    width: 100%;
+    height: 100%;
+}
+
+#array {
     width: 500px;
     height: auto;
-    position: absolute;
-    margin: 0 50%;
+    position: relative;
+    margin: 0 auto;
 }
 
 #elements {
@@ -73,6 +78,7 @@
 margin-top: 50px;
 }
 
-#A {
-    display: block;
+button {
+    width: 150px;
+    margin-left: 175px;
 }

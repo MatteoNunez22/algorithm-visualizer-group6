@@ -23,12 +23,12 @@ function LinearSortArray() {
             // Choosing the first element in our unsorted subarray
             let current = array[i];
             // The last element of our sorted subarray
-            let j = i-1; 
+            let j = i - 1;
             while ((j > -1) && (current < array[j])) {
-                array[j+1] = array[j];
+                array[j + 1] = array[j];
                 j--;
             }
-            array[j+1] = current;
+            array[j + 1] = current;
         }
         let idBeginning = "element";
         for (let j = 0; j < array.length; j++) {
@@ -39,10 +39,10 @@ function LinearSortArray() {
     }
 
     return (
-        <div>
+        <div id="container">
             <p>Linear Sort Array</p>
-            <div id="container">
-            <p>Indexes</p>
+            <div id="array">
+                <p>Indexes</p>
                 <div id="indexes">
                     <div className="elementIndex">0</div>
                     <div className="elementIndex">1</div>
@@ -87,5 +87,5 @@ function LinearSortArray() {
         </div>
     );
 }
-  
+
 export default LinearSortArray;
