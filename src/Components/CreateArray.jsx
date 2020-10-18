@@ -15,20 +15,22 @@ function CreateArray() {
 
         array = value.split(',');
         $("#displayArray").html(array);
-        console.log(array);
     }
 
     function fillArray(event){
         let id = "#element";
         let i;
-        setAnimationState(false);
         for (i=0; i<10; i++) {
             if (array[i] != null) {
-                id = "#element" + i
-                console.log(id);
+                id = "#element" + i;
+                $(id).show();
                 $(id).html(array[i]);
+            } else {
+                id = "#element" + i;
+                $(id).hide();
             }
         }
+
         setAnimationState(true);
     }
 
@@ -72,9 +74,12 @@ function CreateArray() {
                     <i class="arrow down"></i>
                     <i class="arrow down"></i>
                 </div>
-
-                <Anime opacity={[0, 1*animationState]} duration={1600}>
-                    <div id="elements" style={{display: 'flex'}}>
+                <div id="elements" style={{display: 'flex'}}>
+                    <Anime 
+                        opacity={[0, 1*animationState]} 
+                        duration={1600}
+                        delay={anime.stagger(30)}
+                    >
                         <div id="element0" className="square">A</div>
                         <div id="element1" className="square">B</div>
                         <div id="element2" className="square">C</div>
@@ -85,9 +90,9 @@ function CreateArray() {
                         <div id="element7" className="square">H</div>
                         <div id="element8" className="square">I</div>
                         <div id="element9" className="square">J</div>
-                    </div>
-                </Anime>
-
+                        
+                    </Anime>
+                </div>
                 <p id="elementTitle">Elements</p>
                 <button onClick={() => fillArray()}>CREATE</button>
             </div>
