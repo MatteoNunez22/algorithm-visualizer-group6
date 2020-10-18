@@ -1,10 +1,16 @@
 import React from "react";
+import { Link } from "@reach/router";
 import "../Style/Homepage.css"
 
 function Homepage() {
     return (
         <div>
             <p>Homepage</p>
+
+            <Link to="createArray">Create Array</Link><br />
+            <Link to="linearSortArray">Linear Sort Array</Link><br />
+            <Link to="stackAndQueue">Stack and Queue</Link><br />
+            <Link to="popAndDequeue">Pop and Dequeue</Link>
         </div>
     );
 }
