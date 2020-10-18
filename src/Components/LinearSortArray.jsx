@@ -5,7 +5,8 @@ function LinearSortArray() {
     let array = [];
     let maxValue = 20; // the maximum value of a number generated in the array
     let canvasId = "selection-sort-canvas";
-    let canvasWidthAndHeight = 400;
+    let canvasWidth = 400;
+    let canvasHeight = canvasWidth / 2;
     let color = "rgb(255, 0, 0)"; // The color used for the draw() function
     let highlightColor = "rgb(0, 0, 255)"; // The highlight color used for the draw() function
     let canvas; // The canvas where the animation will be displayed
@@ -98,10 +99,10 @@ function LinearSortArray() {
     function canvas_init()
     {
         canvas = document.getElementById(canvasId); // Get the canvas
-        canvas.width = canvasWidthAndHeight; // Set the canvas width
-        canvas.height = canvasWidthAndHeight; // Set the canvas height
+        canvas.width = canvasWidth; // Set the canvas width
+        canvas.height = canvasHeight; // Set the canvas height
 
-        scaleFactor = canvasWidthAndHeight / maxValue; // The factor to determine the height of the lines
+        scaleFactor = canvasWidth / maxValue; // The factor to determine the height of the lines
 
         context = canvas.getContext("2d"); // Get the canvas context
         context.lineWidth = scaleFactor / 2; // Set the width of the lines that will be drawn
@@ -110,7 +111,7 @@ function LinearSortArray() {
     // Draw the state of the array on the canvas (one frame in the animation)
     function draw()
     {
-        context.clearRect(0, 0, canvasWidthAndHeight, canvasWidthAndHeight);
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
 
         // For each element of the array, draw that element as a line
         for (var i = 0; i < array.length; i++)
@@ -176,7 +177,7 @@ function LinearSortArray() {
                 <button onClick={bubbleSortAnimation}>SORT</button>
                 <div id="container">
                     <h1>Bubble Sort Visualized</h1>
-                    <canvas id="selection-sort-canvas" width='" + canvasWidthAndHeight + "px"' height='" + canvasWidthAndHeight + "px"'></canvas>
+                    <canvas id="selection-sort-canvas" width='" + canvasWidth + "px"' height='" + canvasHeight + "px"'></canvas>
                 </div>
             </div>
         </div>
