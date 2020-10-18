@@ -12,6 +12,7 @@ function LinearSortArray() {
     let context; // The context of the canvas
     let scaleFactor; // The scale factor used for the draw() function 
     let currentIndex = -1; // The current index of the array being visited by the sorting algorithm, used for the draw() function
+    let animationDelay = 100; // The amount of milliseconds to pause between frames of the animation
 
     // Randomly generate an array of 10 values between 1 and 20
     function randomArrayGenerate() {
@@ -45,12 +46,6 @@ function LinearSortArray() {
         console.log('Array sorted.');
     }
 
-    function performBubbleSort()
-    {
-        bubbleSortAnimation();
-        updateElements();
-    }
-
     function bubbleSortAnimation()
     {
         var swapped = false;
@@ -68,16 +63,17 @@ function LinearSortArray() {
 
                 swapped = true;
                 draw(); // Draw one frame of the animation
+                updateElements(); // Update the value of the elements displayed on the screen
             }
             
             if (i < array.length) // a full pass of the array has not yet been completed
             {
-                setTimeout(function() {helper(i+1);}, 50); // run helper function to continue passing over the array and wait 500ms
+                setTimeout(function() {helper(i+1);}, animationDelay); // run helper function to continue passing over the array and pause for some time
             }
             else // a full pass of the array has been completed
             {
                 if (swapped) {
-                    setTimeout(function() {bubbleSortAnimation();}, 50); // run bubbleSortAnimation function to do another pass over the array and wait 500ms
+                    setTimeout(function() {bubbleSortAnimation();}, animationDelay); // run bubbleSortAnimation function to do another pass over the array and pause for some time
                 }
             }
         }
@@ -85,6 +81,7 @@ function LinearSortArray() {
         helper(0);
         currentIndex = -1; // Clear the current index for the draw() function
         draw(); // Draw the final array without the currentIndex in a different color
+        updateElements(); // Update the value of the elements one last time
     }
 
     // Update the values of the array elements displayed on the screen
@@ -176,7 +173,7 @@ function LinearSortArray() {
                 <p id="elementTitle">Elements</p>
                 <button onClick={randomArrayGenerate}>RANDOM</button>
                 <br></br>
-                <button onClick={performBubbleSort}>SORT</button>
+                <button onClick={bubbleSortAnimation}>SORT</button>
                 <div id="container">
                     <h1>Bubble Sort Visualized</h1>
                     <canvas id="selection-sort-canvas" width='" + canvasWidthAndHeight + "px"' height='" + canvasWidthAndHeight + "px"'></canvas>
