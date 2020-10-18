@@ -77,6 +77,10 @@
     margin-top: 40px;
 }
 
+#elementTitle { 
+    margin-top: 52px;
+}
+
 .arrowRed {
     border: solid red;
     border-width: 0 3px 3px 0;

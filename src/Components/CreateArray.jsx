@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "@reach/router";
+import Anime, { anime } from 'react-anime';
 import "../Style/CreateArray.css"
 import $ from "jquery";
 
 function CreateArray() {
 
+    const [animationState, setAnimationState] = useState(false);
     let array = [];
+
 
     function getElements(event){
         let value = event.currentTarget.value;
@@ -18,6 +21,7 @@ function CreateArray() {
     function fillArray(event){
         let id = "#element";
         let i;
+        setAnimationState(false);
         for (i=0; i<10; i++) {
             if (array[i] != null) {
                 id = "#element" + i
@@ -25,6 +29,7 @@ function CreateArray() {
                 $(id).html(array[i]);
             }
         }
+        setAnimationState(true);
     }
 
     return (
@@ -41,6 +46,7 @@ function CreateArray() {
 
             <div id="array">
                 <p>Indexes</p>
+
                 <div id="indexes">
                     <div className="elementIndex">0</div>
                     <div className="elementIndex">1</div>
@@ -53,6 +59,7 @@ function CreateArray() {
                     <div className="elementIndex">8</div>
                     <div className="elementIndex">9</div>
                 </div>
+
                 <div id="arrows">
                     <i class="arrow down"></i>
                     <i class="arrow down"></i>
@@ -65,18 +72,22 @@ function CreateArray() {
                     <i class="arrow down"></i>
                     <i class="arrow down"></i>
                 </div>
-                <div id="elements">
-                    <div id="element0" className="square">A</div>
-                    <div id="element1" className="square">B</div>
-                    <div id="element2" className="square">C</div>
-                    <div id="element3" className="square">D</div>
-                    <div id="element4" className="square">E</div>
-                    <div id="element5" className="square">F</div>
-                    <div id="element6" className="square">G</div>
-                    <div id="element7" className="square">H</div>
-                    <div id="element8" className="square">I</div>
-                    <div id="element9" className="square">J</div>
-                </div>
+
+                <Anime opacity={[0, 1*animationState]} duration={1600}>
+                    <div id="elements" style={{display: 'flex'}}>
+                        <div id="element0" className="square">A</div>
+                        <div id="element1" className="square">B</div>
+                        <div id="element2" className="square">C</div>
+                        <div id="element3" className="square">D</div>
+                        <div id="element4" className="square">E</div>
+                        <div id="element5" className="square">F</div>
+                        <div id="element6" className="square">G</div>
+                        <div id="element7" className="square">H</div>
+                        <div id="element8" className="square">I</div>
+                        <div id="element9" className="square">J</div>
+                    </div>
+                </Anime>
+
                 <p id="elementTitle">Elements</p>
                 <button onClick={() => fillArray()}>CREATE</button>
             </div>
