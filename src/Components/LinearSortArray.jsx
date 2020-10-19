@@ -13,7 +13,7 @@ function LinearSortArray() {
     let context; // The context of the canvas
     let scaleFactor; // The scale factor used for the draw() function 
     let currentIndex = -1; // The current index of the array being visited by the sorting algorithm, used for the draw() function
-    let animationDelay = 100; // The amount of milliseconds to pause between frames of the animation
+    let animationDelay = 500; // The amount of milliseconds to pause between frames of the animation
 
     // Randomly generate an array of 10 values between 1 and 20
     function randomArrayGenerate() {
@@ -50,12 +50,15 @@ function LinearSortArray() {
     function bubbleSortAnimation()
     {
         var swapped = false;
-
+        
         let helper = function (i)
         {
-            currentIndex = i+1; // Set the current index for the draw() function
-
-            if (array[i] > array[i+1])
+            if (i == -1) // Special case just for animation
+            {
+                draw();
+                currentIndex = 1;
+            }
+            else if (array[i] > array[i+1]) // Compare the elements
             {
                 // Swap array[i] and array[i+1]
                 var temp = array[i];
@@ -63,9 +66,10 @@ function LinearSortArray() {
                 array[i+1] = temp;
 
                 swapped = true;
-                draw(); // Draw one frame of the animation
-                updateElements(); // Update the value of the elements displayed on the screen
             }
+            
+            currentIndex = i+1; // Set the current index for the draw() function (when currentIndex becomes array.length, no element will be highlighted)
+            draw(); // Draw one frame of the animation
             
             if (i < array.length) // a full pass of the array has not yet been completed
             {
@@ -76,13 +80,16 @@ function LinearSortArray() {
                 if (swapped) {
                     setTimeout(function() {bubbleSortAnimation();}, animationDelay); // run bubbleSortAnimation function to do another pass over the array and pause for some time
                 }
+                else
+                {
+                    return; // The array is sorted if there was not a swap that full pass of the array
+                }
             }
         }
 
-        helper(0);
-        currentIndex = -1; // Clear the current index for the draw() function
-        draw(); // Draw the final array without the currentIndex in a different color
-        updateElements(); // Update the value of the elements one last time
+        helper(-1); // Start a full pass through the array
+        currentIndex = 0; // Set the current index to the first element of the array
+        draw(); // Draw the array with the first element highlighted
     }
 
     // Update the values of the array elements displayed on the screen
@@ -106,6 +113,7 @@ function LinearSortArray() {
 
         context = canvas.getContext("2d"); // Get the canvas context
         context.lineWidth = scaleFactor / 2; // Set the width of the lines that will be drawn
+        context.strokeStyle = color; // Set the color that will be used to draw lines
     }
 
     // Draw the state of the array on the canvas (one frame in the animation)
@@ -116,18 +124,23 @@ function LinearSortArray() {
         // For each element of the array, draw that element as a line
         for (var i = 0; i < array.length; i++)
         {
-            context.strokeStyle = color; // Set the color that will be used to draw the element
+            if (i == currentIndex) // Use a different color for the current index
+            {
+                context.strokeStyle = highlightColor; // Set the color that will be sued to draw the current element
+            }
+            else
+            {
+                context.strokeStyle = color; // Set the color that will be used to draw the other elements
+            }
+
             context.beginPath();
             context.moveTo(0, (i + 0.5) * scaleFactor);
             context.lineTo(array[i] * scaleFactor, (i + 0.5) * scaleFactor);
 
-            if (i == currentIndex) // Use a different color for the current index
-            {
-                context.strokeStyle = "rgb(0, 255, 0)";
-            }
-
             context.stroke(); // Draw the element of the array
         }
+
+        updateElements(); // Update the value of the elements displayed on the screen
     }
 
     return (
