@@ -13,7 +13,8 @@ function LinearSortArray() {
     let context; // The context of the canvas
     let scaleFactor; // The scale factor used for the draw() function 
     let currentIndex = -1; // The current index of the array being visited by the sorting algorithm, used for the draw() function
-    let animationDelay = 500; // The amount of milliseconds to pause between frames of the animation
+    let bubbleSortAnimationDelay = 500; // The amount of milliseconds to pause between frames of the bubble sort animation
+    let insertionSortAnimationDelay = 500; // // The amount of milliseconds to pause between frames of the insertion sort animation
 
     // Randomly generate an array of 10 values between 1 and 20
     function randomArrayGenerate() {
@@ -47,15 +48,72 @@ function LinearSortArray() {
         console.log('Array sorted.');
     }
 
+    function insertionSortAnimation()
+    {
+        let i = 0; // The last index of the sorted part of the array
+        let len = array.length; // The length of the unsorted part of the array
+
+        insertionSort(i, i, len);
+    }
+
+    function insertionSort(i, j, len)
+    {
+        // Performs one iteration of insertion sort
+        let helper = function(j)
+        {
+
+            if (j === i) // Special case just for the animation
+            {
+                currentIndex = i - 1;
+                j--;
+            }
+            else
+            {
+                currentIndex = j;
+
+                let temp = array[j+1]; // Temporary storage to swap elements
+
+                if (j >= 0 && temp < array[j])
+                {
+                    array[j + 1] = array[j];
+                    array[j] = temp;
+                }
+            }
+            
+            draw();
+
+            if (j >= 0) // A full pass of insertion sort has not yet been completed
+            {
+                setTimeout(function() {helper(j - 1);}, insertionSortAnimationDelay); // run helper function to continue passing over the array and pause for some time
+            }
+            else // A full pass of insertion sort has been completed
+            {
+                if (len > 0) // Array still not fully sorted
+                {
+                    setTimeout(function() {insertionSort(i + 1, i + 1, len - 1);}, insertionSortAnimationDelay); // run the insertionSort function to do another pass over the array and pause for some time
+                }
+                else
+                {
+                    return; // The array is sorted
+                }
+            }
+        }
+
+        currentIndex = j - 1;
+        helper(j);
+        draw();
+    }
+
+    // Perform bubble sort with animation
     function bubbleSortAnimation()
     {
         var swapped = false;
         
+        // Performs one iteration of bubble sort
         let helper = function (i)
         {
-            if (i == -1) // Special case just for animation
+            if (i === -1) // Special case just for animation
             {
-                draw();
                 currentIndex = 1;
             }
             else if (array[i] > array[i+1]) // Compare the elements
@@ -73,12 +131,12 @@ function LinearSortArray() {
             
             if (i < array.length) // a full pass of the array has not yet been completed
             {
-                setTimeout(function() {helper(i+1);}, animationDelay); // run helper function to continue passing over the array and pause for some time
+                setTimeout(function() {helper(i+1);}, bubbleSortAnimationDelay); // run helper function to continue passing over the array and pause for some time
             }
             else // a full pass of the array has been completed
             {
                 if (swapped) {
-                    setTimeout(function() {bubbleSortAnimation();}, animationDelay); // run bubbleSortAnimation function to do another pass over the array and pause for some time
+                    setTimeout(function() {bubbleSortAnimation();}, bubbleSortAnimationDelay); // run bubbleSortAnimation function to do another pass over the array and pause for some time
                 }
                 else
                 {
@@ -124,7 +182,7 @@ function LinearSortArray() {
         // For each element of the array, draw that element as a line
         for (var i = 0; i < array.length; i++)
         {
-            if (i == currentIndex) // Use a different color for the current index
+            if (i === currentIndex) // Use a different color for the current index
             {
                 context.strokeStyle = highlightColor; // Set the color that will be sued to draw the current element
             }
@@ -187,9 +245,10 @@ function LinearSortArray() {
                 <p id="elementTitle">Elements</p>
                 <button onClick={randomArrayGenerate}>RANDOM</button>
                 <br></br>
-                <button onClick={bubbleSortAnimation}>SORT</button>
+                <button onClick={insertionSortAnimation}>LINEAR SORT</button>
+                <button onClick={bubbleSortAnimation}>BUBBLE SORT</button>
                 <div id="container">
-                    <h1>Bubble Sort Visualized</h1>
+                    <h1>Sort Visualized</h1>
                     <canvas id="selection-sort-canvas" width='" + canvasWidth + "px"' height='" + canvasHeight + "px"'></canvas>
                 </div>
             </div>
