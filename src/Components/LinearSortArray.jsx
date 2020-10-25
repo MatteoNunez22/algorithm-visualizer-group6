@@ -59,15 +59,17 @@ function LinearSortArray() {
         // Performs one iteration of insertion sort
         let helper = function(j)
         {
+            let swapped = false;
             let indexToHighlight;
             if (j === i) // Special case just for the animation
             {
                 indexToHighlight = i - 1;
                 j--;
+                swapped = true;
             }
             else
             {
-                indexToHighlight = j;
+                indexToHighlight = -1;
 
                 let temp = array[j+1]; // Temporary storage to swap elements
 
@@ -75,12 +77,14 @@ function LinearSortArray() {
                 {
                     array[j + 1] = array[j];
                     array[j] = temp;
+                    swapped = true;
+                    indexToHighlight = j;
                 }
             }
             
             draw(indexToHighlight);
 
-            if (j >= 0) // A full pass of insertion sort has not yet been completed
+            if (j > 0 && swapped) // A full pass of insertion sort has not yet been completed
             {
                 setTimeout(function() {helper(j - 1);}, animationDelay); // run helper function to continue passing over the array and pause for some time
             }
@@ -92,6 +96,7 @@ function LinearSortArray() {
                 }
                 else
                 {
+                    setTimeout(function() {draw(-1);}, animationDelay); // Draw the array without a highligted index
                     return; // The array is sorted
                 }
             }
@@ -244,7 +249,7 @@ function LinearSortArray() {
                 <button onClick={insertionSortAnimation}>LINEAR SORT</button>
                 <button onClick={bubbleSortAnimation}>BUBBLE SORT</button>
                 <div id="container">
-                    <h1>Sort Visualized</h1>
+                    <h1>Sort Animation</h1>
                     <canvas id="selection-sort-canvas" width='" + canvasWidth + "px"' height='" + canvasHeight + "px"'></canvas>
                 </div>
             </div>
