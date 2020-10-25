@@ -84,7 +84,7 @@ function LinearSortArray() {
             
             draw(indexToHighlight);
 
-            if (j > 0 && swapped) // A full pass of insertion sort has not yet been completed
+            if (j >= 0 && swapped) // A full pass of insertion sort has not yet been completed
             {
                 setTimeout(function() {helper(j - 1);}, animationDelay); // run helper function to continue passing over the array and pause for some time
             }
@@ -94,10 +94,10 @@ function LinearSortArray() {
                 {
                     setTimeout(function() {insertionSort(i + 1, i + 1, len - 1);}, animationDelay); // run the insertionSort function to do another pass over the array and pause for some time
                 }
-                else
+                else // Array is sorted
                 {
                     setTimeout(function() {draw(-1);}, animationDelay); // Draw the array without a highligted index
-                    return; // The array is sorted
+                    return; // Stop sorting
                 }
             }
         }
