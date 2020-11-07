@@ -72,8 +72,8 @@ function AddElementToSinglyLinkedList()
         {
             if (currentIndex === targetIndex + 1) // We have passed the target index
             {
-                // Update the list to add the element (with a value of "null")
-                list.splice(targetIndex, 0, "null"); 
+                // Update the list to add the element (with an empty value)
+                list.splice(targetIndex, 0, ""); 
                 listLength = list.length;
                 updateElements(targetIndex);
             }
