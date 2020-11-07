@@ -5,6 +5,7 @@ import CreateArray from "./CreateArray";
 import LinearSortArray from "./LinearSortArray";
 import StackAndQueue from "./StackAndQueue";
 import PopAndDequeue from "./PopAndDequeue";
+import RemoveElementFromSinglyLinkedList from "./RemoveElementFromSinglyLinkedList";
 
 function Application() {
     return (
@@ -14,6 +15,7 @@ function Application() {
             <LinearSortArray path = "linearSortArray" />
             <StackAndQueue path = "stackAndQueue" />
             <PopAndDequeue path = "popAndDequeue" />
+            <RemoveElementFromSinglyLinkedList path = "removeElementFromSinglyLinkedList" />
         </Router>
     );
   }
