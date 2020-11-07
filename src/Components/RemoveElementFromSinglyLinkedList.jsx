@@ -51,12 +51,22 @@ function RemoveElementFromSinglyLinkedList()
         
         updateElements(currentIndex);
 
-        if (currentIndex == targetIndex) // We have reached the target index
+        if (currentIndex == targetIndex + 2) // We have passed the target index and removed the element
         {
-            // Remove the element
+            // Update the list
+            list = list.filter(function(value, index, arr){ return value != "null";})
+            listLength = list.length;
+            updateElements(-1);
         }
-        else // We have not yet reached the target element
+        else // We have not yet removed the element
         {
+            if (currentIndex == targetIndex + 1) // We have passed the target index
+            {
+                // Remove the element
+                list[targetIndex] = "null"; 
+                updateElements(targetIndex);
+            }
+
             setTimeout(function() {removeElement(currentIndex + 1, targetIndex);}, animationDelay); // Continue moving to the target index after a delay
         }
 
