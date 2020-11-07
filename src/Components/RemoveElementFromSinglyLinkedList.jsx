@@ -17,11 +17,11 @@ function RemoveElementFromSinglyLinkedList()
         updateElements(-1); // Update the numbers displayed on the screen while not highlighting an element
     }
 
-    // Update the values of the array elements displayed on the screen and highlight an element
+    // Update the list elements and their values on the screen and highlight an element
     function updateElements(indexToHighlight)
     {
-        // Update innerHtml code
-        let innerHtml = ''; // The html code to return
+        // Update innerHtml code for the list elements
+        let innerHtml = ""; // The html code to use
 
         for (let i = 0; i < listLength; i++)
         {
@@ -38,11 +38,31 @@ function RemoveElementFromSinglyLinkedList()
         innerHtml += "<td><div id=\"element10\" class=\"square\">null</div></td>"
 
         document.getElementById("elementTable").innerHTML = innerHtml;
+
+        // Update innerHtml code for the list indexes
+        innerHtml = ""; // The html code to use
+
+        for (let i = 0; i < listLength; i++)
+        {
+            innerHtml += "<td><div class=\"elementIndex\">" + i + "</div></td>\n" + "<td><brIndex></brIndex></td>\n";
+        }
+
+        document.getElementById("indexesTable").innerHTML = innerHtml;
     }
 
     function removeElementAnimation()
     {
         let targetIndex = parseInt(document.getElementById("elementToRemove").value);
+
+        if (isNaN(targetIndex)) { // Return if not a number
+            return;
+        }
+
+        if (targetIndex > listLength)
+        {
+            targetIndex = listLength;
+        }
+
         removeElement(0, targetIndex);
     }
 
@@ -77,6 +97,31 @@ function RemoveElementFromSinglyLinkedList()
             <p>Remove Element from Singly Linked List</p>
             <div id="array">
                 <p>List</p>
+                <table id="indexesTable">
+                    <tr>
+                        <td><div class="elementIndex">0</div></td>
+                        <td><brIndex></brIndex></td>
+                        <td><div class="elementIndex">1</div></td>
+                        <td><brIndex></brIndex></td>
+                        <td><div class="elementIndex">2</div></td>
+                        <td><brIndex></brIndex></td>
+                        <td><div class="elementIndex">3</div></td>
+                        <td><brIndex></brIndex></td>
+                        <td><div class="elementIndex">4</div></td>
+                        <td><brIndex></brIndex></td>
+                        <td><div class="elementIndex">5</div></td>
+                        <td><brIndex></brIndex></td>
+                        <td><div class="elementIndex">6</div></td>
+                        <td><brIndex></brIndex></td>
+                        <td><div class="elementIndex">7</div></td>
+                        <td><brIndex></brIndex></td>
+                        <td><div class="elementIndex">8</div></td>
+                        <td><brIndex></brIndex></td>
+                        <td><div class="elementIndex">9</div></td>
+                    </tr>
+                </table>
+                <br></br>
+                <br></br>
                 <table id="elements">
                     <tr id="elementTable">
                         <td><div id="element0" class="square">A</div></td>
