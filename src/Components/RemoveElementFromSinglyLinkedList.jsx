@@ -25,7 +25,7 @@ function RemoveElementFromSinglyLinkedList()
 
         for (let i = 0; i < listLength; i++)
         {
-            if (i == indexToHighlight)
+            if (i === indexToHighlight)
             {
                 innerHtml += "<td><div id=\"element" + i + "\" class=\"squareHighlighted\">" + list[i] + "</div></td>" + "\n" + "<td><div id=\"arrow0" + i + "\" class=\"arrow right\"></div></td>";
             }
@@ -71,16 +71,16 @@ function RemoveElementFromSinglyLinkedList()
         
         updateElements(currentIndex);
 
-        if (currentIndex == targetIndex + 2) // We have passed the target index and removed the element
+        if (currentIndex === targetIndex + 2) // We have passed the target index and removed the element
         {
             // Update the list
-            list = list.filter(function(value, index, arr){ return value != "null";})
+            list = list.filter(function(value, index, arr){ return value !== "null";})
             listLength = list.length;
             updateElements(-1);
         }
         else // We have not yet removed the element
         {
-            if (currentIndex == targetIndex + 1) // We have passed the target index
+            if (currentIndex === targetIndex + 1) // We have passed the target index
             {
                 // Remove the element
                 list[targetIndex] = "null"; 
