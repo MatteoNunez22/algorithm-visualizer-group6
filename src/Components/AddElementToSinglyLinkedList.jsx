@@ -5,7 +5,6 @@ function AddElementToSinglyLinkedList()
 {
     let list = [];
     let listLength = 0; // The length of the list
-    let maxValue = 20; // the maximum value of a number generated in the array
     let animationDelay = 400; // the amount of milliseconds to pause between frames of the animation
 
     // Update the list elements and their values on the screen and highlight an element
@@ -16,7 +15,7 @@ function AddElementToSinglyLinkedList()
 
         for (let i = 0; i < listLength; i++)
         {
-            if (i == indexToHighlight)
+            if (i === indexToHighlight)
             {
                 innerHtml += "<td><div id=\"element" + i + "\" class=\"squareHighlighted\">" + list[i] + "</div></td>" + "\n" + "<td><div id=\"arrow0" + i + "\" class=\"arrow right\"></div></td>";
             }
@@ -46,7 +45,7 @@ function AddElementToSinglyLinkedList()
         let targetIndex = parseInt(document.getElementById("elementIndexToAdd").value);
         let targetValue = parseInt(document.getElementById("elementValueToAdd").value);
 
-        if (isNaN(targetIndex)) { // Return if not a number
+        if (isNaN(targetIndex) || targetIndex < 0) { // Return if not a number or if negative
             return;
         }
 
@@ -63,7 +62,7 @@ function AddElementToSinglyLinkedList()
         
         updateElements(currentIndex);
 
-        if (currentIndex == targetIndex + 2) // We have passed the target index and added the element
+        if (currentIndex === targetIndex + 2) // We have passed the target index and added the element
         {
             // Update the value of the element added
             list[targetIndex] = targetValue;
@@ -71,7 +70,7 @@ function AddElementToSinglyLinkedList()
         }
         else // We have not yet added the element
         {
-            if (currentIndex == targetIndex + 1) // We have passed the target index
+            if (currentIndex === targetIndex + 1) // We have passed the target index
             {
                 // Update the list to add the element (with a value of "null")
                 list.splice(targetIndex, 0, "null"); 
