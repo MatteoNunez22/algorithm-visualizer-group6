@@ -11,6 +11,19 @@
     width: 34px;
   }
 
+  .squareHighlighted {
+    background: rgb(136, 255, 0);
+    border: 1px solid #000;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 34px;
+    margin-right: 10px;
+    text-align: center;
+    width: 34px;
+  }
+
 .elementIndex {
     background: rgb(95, 174, 219);
     border-radius: 17px;

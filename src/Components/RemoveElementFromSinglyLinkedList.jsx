@@ -6,7 +6,7 @@ function RemoveElementFromSinglyLinkedList()
     let list = [];
     let listLength = 10; // The length of the list
     let maxValue = 20; // the maximum value of a number generated in the array
-    let animationDelat = 400; // the amount of milliseconds to pause between frames of the animation
+    let animationDelay = 400; // the amount of milliseconds to pause between frames of the animation
     
     // Randomly generate a list of values between 1 and 20
     function randomListGenerate() {
@@ -14,34 +14,52 @@ function RemoveElementFromSinglyLinkedList()
             list[i] = Math.floor((Math.random() * maxValue) + 1);
         }
 
-        updateElements(); // Update the numbers displayed on the screen
+        updateElements(-1); // Update the numbers displayed on the screen while not highlighting an element
     }
 
-    // Update the values of the array elements displayed on the screen
-    function updateElements()
+    // Update the values of the array elements displayed on the screen and highlight an element
+    function updateElements(indexToHighlight)
     {
         // Update innerHtml code
         let innerHtml = ''; // The html code to return
 
         for (let i = 0; i < listLength; i++)
         {
-            innerHtml += "<td><div id=\"element" + i + "\" class=\"square\">" + list[i] + "</div></td>" + "\n" + "<td><div id=\"arrow0" + i + "\" class=\"arrow right\"></div></td>";
+            if (i == indexToHighlight)
+            {
+                innerHtml += "<td><div id=\"element" + i + "\" class=\"squareHighlighted\">" + list[i] + "</div></td>" + "\n" + "<td><div id=\"arrow0" + i + "\" class=\"arrow right\"></div></td>";
+            }
+            else
+            {
+                innerHtml += "<td><div id=\"element" + i + "\" class=\"square\">" + list[i] + "</div></td>" + "\n" + "<td><div id=\"arrow0" + i + "\" class=\"arrow right\"></div></td>";
+            }
         }
+
+        innerHtml += "<td><div id=\"element10\" class=\"square\">null</div></td>"
 
         document.getElementById("elementTable").innerHTML = innerHtml;
     }
 
-    function removeElement()
+    function removeElementAnimation()
     {
-        let index = parseInt(document.getElementById("elementToRemove").value);
-        removeElementAnimation(0, index);
+        let targetIndex = parseInt(document.getElementById("elementToRemove").value);
+        removeElement(0, targetIndex);
     }
 
 
-    function removeElementAnimation(currentIndex, targetIndex) {
+    function removeElement(currentIndex, targetIndex) {
         
+        updateElements(currentIndex);
 
-        updateElements();
+        if (currentIndex == targetIndex) // We have reached the target index
+        {
+            // Remove the element
+        }
+        else // We have not yet reached the target element
+        {
+            setTimeout(function() {removeElement(currentIndex + 1, targetIndex);}, animationDelay); // Continue moving to the target index after a delay
+        }
+
     }
 
     return (
@@ -71,6 +89,7 @@ function RemoveElementFromSinglyLinkedList()
                         <td><div id="arrow8" class="arrow right"></div></td>
                         <td><div id="element9" class="square">A</div></td>
                         <td><div id="arrow9" class="arrow right"></div></td>
+                        <td><div id="element10" class="square">A</div></td>
                     </tr>       
                 </table>
                 <br></br>
@@ -78,7 +97,7 @@ function RemoveElementFromSinglyLinkedList()
                 <button onClick={randomListGenerate}>RANDOM LIST</button>
                 <br></br>
                 <div class="row">
-                    <button onClick={removeElement}>REMOVE ELEMENT</button>
+                    <button onClick={removeElementAnimation}>REMOVE ELEMENT</button>
                     <input type="text" id="elementToRemove"></input>
                 </div>
             </div>
