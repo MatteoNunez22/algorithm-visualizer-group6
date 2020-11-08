@@ -1,32 +1,12 @@
 {
   "name": "algorithm-visualizer-group6",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@reach/router": "^1.3.4",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "chart.js": "^2.9.3",
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "d3": "^6.2.0",
-=======
-    "jquery": "^3.5.1",
->>>>>>> feature/Create_Array
-=======
-    "d3": "^6.2.0",
->>>>>>> CreateArrayFromStackAndQueue
-    "react": "^16.13.1",
-    "react-anime": "^3.0.3",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.0"
-  },
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "cucumber-js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -43,5 +23,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatteoNunez22/algorithm-visualizer-group6.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatteoNunez22/algorithm-visualizer-group6/issues"
+  },
+  "homepage": "https://github.com/MatteoNunez22/algorithm-visualizer-group6#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^7.0.0-rc.0"
   }
 }
