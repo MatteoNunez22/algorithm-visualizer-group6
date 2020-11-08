@@ -8,7 +8,11 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "chart.js": "^2.9.3",
+<<<<<<< HEAD
     "d3": "^6.2.0",
+=======
+    "jquery": "^3.5.1",
+>>>>>>> feature/Create_Array
     "react": "^16.13.1",
     "react-anime": "^3.0.3",
     "react-dom": "^16.13.1",
