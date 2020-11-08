@@ -3,7 +3,7 @@ import "../Style/UpdateElementFromDoublyLinkedList.css";
 
 function UpdateElementFromDoublyLinkedList() 
 {
-    let list = [];
+    let list = []; // The list that will be drawn on the screen for every frame of the animation
     let listLength = 0; // The length of the list
     let animationDelay = 400; // the amount of milliseconds to pause between frames of the animation
 
@@ -11,54 +11,59 @@ function UpdateElementFromDoublyLinkedList()
     function drawList(indexToHighlight)
     {
         // Update innerHtml code for the list elements
-        let innerHtml = ""; // The html code to use
+        let innerHtml = ""; // The html code to update
 
+        // For every element of the list
         for (let i = 0; i < listLength; i++)
         {
-            if (i === indexToHighlight) // Draw element at index i with a different color
+            if (i === indexToHighlight) // Draw element at index i with a the highlight color
             {
                 innerHtml += "<td><div id=\"element" + i + "\" class=\"squareHighlighted\">" + list[i] + "</div></td>" + "\n";
             }
-            else
+            else // Draw element at index i with the standard color
             {
                 innerHtml += "<td><div id=\"element" + i + "\" class=\"square\">" + list[i] + "</div></td>" + "\n";
             }
             
-            if (i !== listLength - 1) // Add arrows after the element (if not the last element)
+            if (i !== listLength - 1) // Draw arrows after the element (but not after the last element)
             {
                 innerHtml += "<td><div id=\"arrow" + i + "\" class=\"arrow left\"></div></td>" + "\n" + "<td><div id=\"arrow" + i + "\" class=\"arrow right\"></div></td>";
             }
         }
 
-        document.getElementById("elementTable").innerHTML = innerHtml;
+        document.getElementById("elementTable").innerHTML = innerHtml; // Update the innerHtml code of the elements
 
         // Update innerHtml code for the list indexes
-        innerHtml = ""; // The html code to use
+        innerHtml = ""; // The html code to update
 
         for (let i = 0; i < listLength; i++)
         {
             innerHtml += "<td><div class=\"elementIndex\">" + i + "</div></td>\n" + "<td><brIndex></brIndex></td>\n";
         }
 
-        document.getElementById("indexesTable").innerHTML = innerHtml;
+        document.getElementById("indexesTable").innerHTML = innerHtml; // Update the innerHtml code of the indexes
     }
 
+    // Called when the ADD ELEMENT button is clicked
     function addElementButtonClicked()
     {
         updateElementAnimation("addElement");
     }
 
+    // Called when the REMOVE ELEMENT button is clicked
     function removeElementButtonClicked()
     {
         updateElementAnimation("removeElement");
     }
 
+    // Called when the MODIFY ELEMENT button is clicked
     function modifyElementButtonClicked()
     {
         updateElementAnimation("modifyElement");
     }
 
-
+    // Starts the animation to update an element depending on the action
+    // There are three actions: adding an element, removing an element, and updating an element
     function updateElementAnimation(action)
     {
         let targetIndex = parseInt(document.getElementById("elementIndexToUpdate").value); // index of element to update
@@ -73,7 +78,7 @@ function UpdateElementFromDoublyLinkedList()
             targetIndex = listLength;
         }
 
-        // Decide whether to update starting from the head or tail
+        // Decide whether to update the element starting from the head or tail
         if (targetIndex < listLength / 2 || listLength === 0 || targetIndex === 0)
         {
             updateElement(0, targetIndex, targetValue, action, "head"); // Update the element starting from the head
@@ -85,9 +90,13 @@ function UpdateElementFromDoublyLinkedList()
         
     }
 
+    // This method performs an animation and updates an element
+    // The method moves from the currentIndex to the targetIndex index by index for the animation
+    // The method either increments (when moving from the head) or decrements (when moving from the tail) the currentIndex at each recursive step to approach the targetIndex, depeneding on the direction parameter
+    // Once the method has passed the targetIndex, it updates the element depenepding on the action parameter: "addElement", "removeElement", or "modifyElement"
     function updateElement(currentIndex, targetIndex, targetValue, action, direction) {
         
-        drawList(currentIndex); // Draw the list to the screen
+        drawList(currentIndex); // Draw the list to the screen and highlight the currentIndex
 
         let startUpdating, finishUpdating; // The values of the currentIndex when updating needs to start and needs to finish
         let nextCurrentIndex; // The next value of the current index to pass to use for the recursive call
@@ -156,7 +165,6 @@ function UpdateElementFromDoublyLinkedList()
 
             setTimeout(function() {updateElement(nextCurrentIndex, targetIndex, targetValue, action, direction);}, animationDelay); // Continue moving to the target index after a delay
         }
-
     }
 
     return (
