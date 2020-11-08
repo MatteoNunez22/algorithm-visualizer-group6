@@ -1,0 +1,24 @@
+.center {
+  width: 500px;
+  margin: 0 auto;
+}
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.stackContainer,
+.queueContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  border: 1px solid black;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
