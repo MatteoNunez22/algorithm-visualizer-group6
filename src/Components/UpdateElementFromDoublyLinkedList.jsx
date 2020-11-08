@@ -1,7 +1,7 @@
 import React from "react";
 import "../Style/AddElementToSinglyLinkedList.css";
 
-function AddElementToSinglyLinkedList() 
+function UpdateElementFromDoublyLinkedList() 
 {
     let list = [];
     let listLength = 0; // The length of the list
@@ -53,9 +53,13 @@ function AddElementToSinglyLinkedList()
         {
             targetIndex = listLength;
         }
-        
-        addElement(0, targetIndex, targetValue);
-       
+
+        if(targetIndex < (listLength/2)){
+            addElement(0, targetIndex, targetValue);
+        }else{
+            addElementFromTail(listLength-1, targetIndex, targetValue);
+            
+        }
         
     }
 
@@ -97,14 +101,6 @@ function AddElementToSinglyLinkedList()
         }
         else // We have not yet added the element
         {
-            if (currentIndex === targetIndex + 1) // We have passed the target index
-            {
-                // Update the list to add the element (with an empty value)
-                list.splice(targetIndex, 0, ""); 
-                listLength = list.length;
-                updateElements(targetIndex);
-            }
-
             setTimeout(function() {addElement(currentIndex - 1, targetIndex, targetValue);}, animationDelay); // Continue moving to the target index after a delay
         }
 
@@ -144,4 +140,4 @@ function AddElementToSinglyLinkedList()
     );
 }
 
-export default AddElementToSinglyLinkedList;
+export default UpdateElementFromDoublyLinkedList;

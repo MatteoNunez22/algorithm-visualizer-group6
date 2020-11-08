@@ -7,6 +7,7 @@ import StackAndQueue from "./StackAndQueue";
 import PopAndDequeue from "./PopAndDequeue";
 import AddElementToSinglyLinkedList from "./AddElementToSinglyLinkedList";
 import RemoveElementFromSinglyLinkedList from "./RemoveElementFromSinglyLinkedList";
+import UpdateElementFromDoublyLinkedList from "./UpdateElementFromDoublyLinkedList"
 
 function Application() {
     return (
@@ -18,6 +19,7 @@ function Application() {
             <PopAndDequeue path = "popAndDequeue" />
             <AddElementToSinglyLinkedList path = "addElementToSinglyLinkedList" />
             <RemoveElementFromSinglyLinkedList path = "removeElementFromSinglyLinkedList" />
+            <UpdateElementFromDoublyLinkedList path = "updateElementFromDoublyLinkedList" />
         </Router>
     );
   }
