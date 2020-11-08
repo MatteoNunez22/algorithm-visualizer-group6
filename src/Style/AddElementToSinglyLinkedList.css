@@ -1,0 +1,115 @@
+.square {
+    background: chocolate;
+    border: 1px solid #000;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 34px;
+    margin-right: 10px;
+    text-align: center;
+    width: 34px;
+  }
+
+  .squareHighlighted {
+    background: rgb(136, 255, 0);
+    border: 1px solid #000;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 34px;
+    margin-right: 10px;
+    text-align: center;
+    width: 34px;
+  }
+
+.elementIndex {
+    background: rgb(95, 174, 219);
+    border-radius: 17px;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 35px;
+    margin-right: 11px;
+    margin-top: 11px;
+    text-align: center;
+    width: 35px;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+}
+
+#array {
+    width: 500px;
+    height: auto;
+    position: relative;
+    margin: 0 auto;
+}
+
+#elements {
+    position: absolute;
+}
+
+#indexes {
+    position: absolute;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-top: 35px;
+    margin-left: 13px;
+    margin-right: 24px;
+    margin-bottom: 15px;
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+#arrows {
+    margin-top: 40px;
+}
+
+.arrowRed {
+    border: solid red;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+#elementTitle {
+margin-top: 50px;
+}
+
+button {
+    width: 150px;
+    margin-left: 175px;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+brIndex {
+    content:" ";
+    display: block;
+    margin: 0 23px;
+}
