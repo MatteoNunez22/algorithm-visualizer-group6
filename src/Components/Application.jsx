@@ -6,6 +6,7 @@ import LinearSortArray from "./LinearSortArray";
 import StackAndQueue from "./StackAndQueue";
 import PopAndDequeue from "./PopAndDequeue";
 import AddElementToSinglyLinkedList from "./AddElementToSinglyLinkedList";
+import RemoveElementFromSinglyLinkedList from "./RemoveElementFromSinglyLinkedList";
 
 function Application() {
     return (
@@ -16,6 +17,7 @@ function Application() {
             <StackAndQueue path = "stackAndQueue" />
             <PopAndDequeue path = "popAndDequeue" />
             <AddElementToSinglyLinkedList path = "addElementToSinglyLinkedList" />
+            <RemoveElementFromSinglyLinkedList path = "removeElementFromSinglyLinkedList" />
         </Router>
     );
   }
