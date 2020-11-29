@@ -115,7 +115,7 @@ function UpdateElementFromDoublyLinkedList()
 
     return (
         <div id="container">
-            <p>Add Element to Singly Linked List</p>
+            <p>Add Element to Doubly Linked List</p>
             <div id="array">
                 <p>List</p>
                 <table id="indexesTable">
