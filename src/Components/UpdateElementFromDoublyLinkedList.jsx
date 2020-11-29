@@ -106,6 +106,13 @@ function UpdateElementFromDoublyLinkedList()
 
     }
 
+    function displayPseudocode() {
+        let pseudocode = document.getElementById("pseudocode");
+        pseudocode.style.width="600px";
+        pseudocode.style.height="400px";
+        pseudocode.innerHTML = "# The class for a node\nclass Node:\n     # Fields\n     int value\n     Node next\n     Node previous\n\n     # Constructor\n     Node(int value, Node next, Node previous):\n          this.value <- value\n          this.next <- next\n          this.previous <- previous\n\n# The class for the doubly linked list\nclass DoublyLinkedList\n     # Fields\n     Node head\n\n     # Constructor\n     DoublyLinkedList(Node firstNode):\n          head <- firstNode\n\n     # Method to add an element at an index to the doubly linked list\n     bool addAt(int index, int value):\n          if index < 0:\n               return false\n\n          Node newNode <- new Node(value, null)\n\n          if head == null:\n               head <- newNode\n               return true\n\n          if index == 0:\n               Node temp <- head.next\n               head.next <- newNode\n               newNode.next <- temp\n               return true\n\n          # Add from the tail of the list if the index is closer to the tail\n          if index > list.length/2:\n               Node currentNode <- tail\n               Node nextNode <- tail\n               for currentIndex from list.length to index+2:\n                    if currentNode == null:\n                         return break\n                    newNode.previous <- currentNode\n                    currentNode.next <- newNode\n               return true\n\n          Node currentNode <- head\n          Node prevNode <- head\n          for currentIndex from 0 to index-2:\n               if currentNode == null:\n                    return break\n               prevNode <- currentNode\n               currentNode <- currentNode.next\n\n          if currentNode == null:\n               prevNode.next <- newNode\n               return true\n\n          Node temp <- currentNode.next\n          currentNode.next <- newNode\n          newNode.next <- temp\n          return true\n";
+    }
+
     return (
         <div id="container">
             <p>Add Element to Singly Linked List</p>
@@ -135,6 +142,10 @@ function UpdateElementFromDoublyLinkedList()
                 </div>
                 <br></br>
                 <button onClick={addElementAnimation}>ADD ELEMENT</button>
+                 <button onClick={displayPseudocode}>DISPLAY PSEUDOCODE</button>
+                <br></br>
+                <br></br>
+                <textarea id="pseudocode" name="pseudocode" readonly></textarea>
             </div>
         </div>
     );
