@@ -18,7 +18,11 @@ function StackAndQueue() {
 			<br />
 			<button onClick={createArrayFromStack}>Create array by popping the stack elements</button>
 			<button onClick={createArrayFromQueue}>Create array by dequeuing the queue</button>
-			<br />
+			<button onClick={displayPseudocode}>DISPLAY PSEUDOCODE</button>
+            <br></br>
+            <br></br>
+            <textarea id="pseudocode" name="pseudocode" readonly></textarea>
+            <br />
 			<br />
 			<div className="container">
 
@@ -31,6 +35,13 @@ function StackAndQueue() {
 			</div>
 		</div>
 	);
+}
+
+function displayPseudocode() {
+    let pseudocode = document.getElementById("pseudocode");
+    pseudocode.style.width="600px";
+    pseudocode.style.height="400px";
+    pseudocode.innerHTML = "# The class for a stack\nclass Stack:\n    # Fields\n    int MAX\n    int top	// top of stack\n    int array[] <- new int[MAX] // stack array\n\n    # Constructor\n    Stack()\n        top <- -1\n\n    # Push Function\n    boolean push(int x):\n        if top >= MAX-1:\n            return false\n\n        else:\n            a[++top] <- x\n            return true\n\n    # Pop Function\n    int pop():\n        if top < 0:\n            return 0 // stack overflow\n\n        else:\n            int x <- a[top--]\n            return x\n";
 }
 
 function createArrayFromStack() {
